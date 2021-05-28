@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Data Binding</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    
+    <script>
+        var context = { state:'Select State'};
+         const getStateData = function(){
+            return new Promise((resolve, reject) =>{
+                setTimeout(()=>{
+                    resolve({data:'Florida'});
+                },1000)
+            });
+        }
+  
+       context.getState = function(){
+           if(this.zipInput.length < 5 || this.zipInput.length > 5){
+                return false;
+           }
+           getStateData().then((response) => {
+                sessionStorage.clear();
+                this.state = response.data;
+                Twine.reset(context).bind().refresh();
+                sessionStorage.setItem("geotrackingState",this.state);
+                sessionStorage.setItem("geotrackingZip",this.zipInput);
+        });
+       }
+    window.addEventListener("load", () =>{
+           // context.state = sessionStorage.getItem("geotrackingState");
+       });
+     </script>
+  </head>
+  <body>
+     <div class="container">
+      <div class="row">
+          <p class="tfn"></p>
+        <div class="col-md-4">
+            <label for="zipCode" class="form-label">ZipCode</label>
+            <input type="number" class="form-control" id="zipCode" placeholder="90210" data-bind="zipInput" data-bind-event-input="getState()">
+        </div>
+      <div class="col-md-4">
+        <pre data-bind="JSON.stringify(window.context)"></pre>
+        <pre data-bind="state"></pre>
+        <label for="states" class="form-label">State</label> 
+        <select  class="form-select" id="states" data-bind="state">
+          <option role="option" value="Select State">Select State</option>
+          <option role="option" value="Alabama">Alabama</option>
+          <option role="option" value="Alaska">Alaska</option>
+          <option role="option" value="American Samoa">American Samoa</option>
+          <option role="option" value="Arizona">Arizona</option>
+          <option role="option" value="Arkansas">Arkansas</option>
+          <option role="option" value="California">California</option>
+          <option role="option" value="Colorado">Colorado</option>
+          <option role="option" value="Connecticut">Connecticut</option>
+          <option role="option" value="Delaware">Delaware</option>
+          <option role="option" value="District of Columbia">
+            District of Columbia
+          </option>
+          <option role="option" value="Florida">Florida</option>
+          <option role="option" value="Georgia">Georgia</option>
+          <option role="option" value="Guam">Guam</option>
+          <option role="option" value="Hawaii">Hawaii</option>
+          <option role="option" value="Idaho">Idaho</option>
+          <option role="option" value="Illinois">Illinois</option>
+          <option role="option" value="Indiana">Indiana</option>
+          <option role="option" value="Iowa">Iowa</option>
+          <option role="option" value="Kansas">Kansas</option>
+          <option role="option" value="Kentucky">Kentucky</option>
+          <option role="option" value="Louisiana">Louisiana</option>
+          <option role="option" value="Maine">Maine</option>
+          <option role="option" value="Maryland">Maryland</option>
+          <option role="option" value="Massachusetts">Massachusetts</option>
+          <option role="option" value="Michigan">Michigan</option>
+          <option role="option" value="Minnesota">Minnesota</option>
+          <option role="option" value="Mississippi">Mississippi</option>
+          <option role="option" value="Missouri">Missouri</option>
+          <option role="option" value="Montana">Montana</option>
+          <option role="option" value="N. Marianas Islands">
+            N. Marianas Islands
+          </option>
+          <option role="option" value="Nebraska">Nebraska</option>
+          <option role="option" value="Nevada">Nevada</option>
+          <option role="option" value="New Hampshire">New Hampshire</option>
+          <option role="option" value="New Jersey">New Jersey</option>
+          <option role="option" value="New Mexico">New Mexico</option>
+          <option role="option" value="New York">New York</option>
+          <option role="option" value="North Carolina">North Carolina</option>
+          <option role="option" value="North Dakota">North Dakota</option>
+          <option role="option" value="Ohio">Ohio</option>
+          <option role="option" value="Oklahoma">Oklahoma</option>
+          <option role="option" value="Oregon">Oregon</option>
+          <option role="option" value="Pennsylvania">Pennsylvania</option>
+          <option role="option" value="Puerto Rico">Puerto Rico</option>
+          <option role="option" value="Rhode Island">Rhode Island</option>
+          <option role="option" value="South Carolina">South Carolina</option>
+          <option role="option" value="South Dakota">South Dakota</option>
+          <option role="option" value="Tennessee">Tennessee</option>
+          <option role="option" value="Texas">Texas</option>
+          <option role="option" value="U.S. Virgin Islands">
+            U.S. Virgin Islands
+          </option>
+          <option role="option" value="Utah">Utah</option>
+          <option role="option" value="Vermont">Vermont</option>
+          <option role="option" value="Virginia">Virginia</option>
+          <option role="option" value="Washington">Washington</option>
+          <option role="option" value="West Virginia">West Virginia</option>
+          <option role="option" value="Wisconsin">Wisconsin</option>
+          <option role="option" value="Wyoming">Wyoming</option>
+        </select>
+    </div>
+      </div>
+
+      <div class="row">
+            <div class="col-md-3" data-bind-show="state =='Florida'">
+                <div class="card">
+                    <div class="card-body">
+                      This is Florida content
+                    </div>
+                  </div>
+            </div>
+
+            
+      </div>
+      <p class="tfn"></p>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="js/twine.js"></script>
+       <script type="text/javascript">
+        
+        $(function() {
+          Twine.reset(context).bind().refresh();
+        });
+      </script>
+  </body>
+</html>

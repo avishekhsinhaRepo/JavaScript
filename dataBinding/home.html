@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Home</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <script>
+        const context={'tfn':'NA'}
+    </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-primary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/product.html">Products</a>
+            </div>
+          </nav>
+          <pre data-bind="JSON.stringify(window.context)"></pre>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <span class="badge bg-info text-dark" data-bind="tfn"></span>
+                </div>
+                
+            </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/twine.js"></script>
+    <script src="js/cookieHandler.js"></script>
+    <script src="js/cookies.js"></script>
+    <script src="js/global.js"></script>
+    </body>
+</html>
